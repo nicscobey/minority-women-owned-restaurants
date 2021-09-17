@@ -41,9 +41,11 @@ let restaurantImages = [
 let imgNum = 0;
 
 let setRestaurantImages = () => {
-    console.log(imgNum);
     if (imgNum >= restaurantImages.length) {
         imgNum = 0;
+    }
+    else if (imgNum < 0) {
+        imgNum = restaurantImages.length - 1;
     }
     $('#img-restaurant-page-bottom-photos').css('background-image', `url("${restaurantImages[imgNum]}")`)
 }
@@ -51,14 +53,11 @@ let setRestaurantImages = () => {
 setRestaurantImages(0);
 
 $(document).on('click', (event) => {
-    console.log(event.target);
     if ($(event.target).is('#right-button-restaurant-page-bottom-photos')) {
-        console.log("BLAH");
         imgNum++;
         setRestaurantImages();
     }
     else if ($(event.target).is('#left-button-restaurant-page-bottom-photos')) {
-        console.log("BLAH")
         imgNum--;
         setRestaurantImages();
     }
