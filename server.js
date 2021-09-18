@@ -4,6 +4,8 @@ const port = 3000;
 
 const restaurants = require('./models/restaurants');
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
     // res.send('Hey!');
     res.render('index.ejs')

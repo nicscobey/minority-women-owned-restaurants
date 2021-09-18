@@ -8,7 +8,7 @@
     <title>Minority-Owned Restaurants</title>
     <!-- BULMA CSS - https://bulma.io/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script defer src="js/script.js"></script>
@@ -75,7 +75,10 @@
 
     <div id="results-page" class="page">
         <h2 class="subtitle">
-            <%=results.length%> Results Found
+            <%if (results.length===1) {%>
+                <%=results.length%> Result Found
+                    <%} else {%>
+                        <%=results.length%> Results Found <%}%>
         </h2>
         <div id="results-list">
             <% results.forEach((restaurant)=> { %>
@@ -85,28 +88,38 @@
                     </div>
                     <div class="result-item-info">
                         <div class="result-item-text">
-                            <h5 class="title is-5">
+                            <h5 class="title is-5 no-margin">
                                 <%=restaurant.name%>
                             </h5>
-                            <h6 class="title is-6">
-                                <%=restaurant.location%> &#8226; <%=restaurant.type%>
+                            <div class="result-favorites-row">
+                                <p>
+                                    <% let totalReview=0; restaurant.reviews.forEach((review)=> {
+                                        console.log(totalReview, review.rating);
+                                        totalReview += review.rating;
+                                        console.log(`new total is `, totalReview);
+                                        })
+                                        totalReview = totalReview / restaurant.reviews.length;
+                                        console.log(totalReview);
+                                        %>
+                                        <%=totalReview%>
+                                </p>
+                                <p>(<%=restaurant.reviews.length%>)</p>
+                            </div>
+                            <p class="no-margin">
+                                <%=restaurant.address%>
+                            </p>
+                            <h6 class="title is-6  no-margin result-tags">
+                                <% restaurant.tags.forEach((tag)=> {%>
+                                    <p class="result-tag">
+                                        <%=tag%>
+                                    </p>
+                                    <%})%>
                             </h6>
-                            <h6 class="title is-6">Add to Favorites</h6>
                         </div>
                         <div class="result-item-star-info">
-                            <p>STAR</p>
-                            <p>
-                                <% let totalReview=0; restaurant.reviews.forEach((review)=> {
-                                    console.log(totalReview, review.rating);
-                                    totalReview += review.rating;
-                                    console.log(`new total is `, totalReview);
-                                    })
-                                    totalReview = totalReview / restaurant.reviews.length;
-                                    console.log(totalReview);
-                                    %>
-                                    <%=totalReview%>
-                            </p>
-                            <p>(<%=restaurant.reviews.length%>)</p>
+                            <p>FAV</p>
+
+                            <p>ELL</p>
                         </div>
                     </div>
                 </div>

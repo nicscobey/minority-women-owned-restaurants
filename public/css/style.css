@@ -13,6 +13,10 @@
     margin-bottom: 52px;
 }
 
+.title.no-margin {
+    margin-bottom: 0;
+}
+
 #home-page {
     display: flex;
     flex-direction: column;
@@ -31,16 +35,41 @@
     align-items: center;
 }
 
+.results-list-item {
+    width: 350px;
+    background-color: rgb(218, 218, 218);
+    padding: 5px;
+}
+
 .result-item-star-info, #results-page {
     flex-direction: column;
     justify-content: center;
 }
 
-.results-list-item {
+.result-item-info {
     justify-content: space-between;
+    flex-grow: 1;
 }
 
-#results-page,.restaurant-page-bottom-about {
+.result-item-img {
+    border: 1px solid blue;
+    width: 80px;
+    height: 80px;
+    margin-right: 5px;
+}
+
+.result-tags, .result-favorites-row {
+    display: flex;
+}
+
+.result-tag {
+    background-color: aquamarine;
+    margin: 2px;
+    padding: 4px;
+    border-radius: 20px;
+    font-weight: normal;
+}
+.restaurant-page, .restaurant-page-bottom-about {
     display: none;
 }
 
